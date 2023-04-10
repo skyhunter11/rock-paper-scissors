@@ -12,6 +12,7 @@
 //Write function called "game".
     //Call "playRound" inside of game to play a 5 round game. After 5 rounds "game" will declares a winner and loser.
 
+//Assigns random integer from getRandomIntInclusive(min, max) to "Rock", "Paper", or "Scissors"
 function getComputerChoice () {
     switch (getRandomIntInclusive(1,3)) {
         case 1:
@@ -22,7 +23,7 @@ function getComputerChoice () {
             return "Scissors";
     }
 }
-
+//Returns 1, 2, or 3 randomly
 function getRandomIntInclusive(min, max){
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -33,6 +34,7 @@ function getPlayerChoice () {
     return prompt("Enter 'Rock', 'Paper', or 'Scissors'.");
 }
 
+//Compares computerSelection to playerSelection and returns result
 function playRound () {
 
     let playerSelection = getPlayerChoice();
@@ -76,12 +78,13 @@ function playRound () {
     }
 }
 
+//Calls playRound() until 5 games (not counting ties) have been played. Tracks scores. Reports winner after 5 games
 function game() {
 
-    playerScore = 0;
-    computerScore = 0;
-    tieGames = 0;
-    totalGames = 0;
+    let playerScore = 0;
+    let computerScore = 0;
+    let tieGames = 0;
+    let totalGames = 0;
 
     while (totalGames < 5) {
         roundResult = playRound();
