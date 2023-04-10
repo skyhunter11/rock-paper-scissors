@@ -23,6 +23,12 @@ function getComputerChoice () {
     }
 }
 
+function getRandomIntInclusive(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+}
+
 function getPlayerChoice () {
     return prompt("Enter 'Rock', 'Paper', or 'Scissors'.");
 }
@@ -35,38 +41,68 @@ function playRound () {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
+
     if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You loose. Paper beats rock";
+        console.log("You lose. Rock beats paper")
+        return "computerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You loose. Scissors beats paper";
+        console.log("You lose. Scissors beats rock")
+        return "computerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You loose. Rock beats scissors";
+        console.log("You lose. Rock beats scissors")
+        return "computerWins";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win. Rock beats scissors";
+        console.log("You win. Rock beats scissors")
+        return "playerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You win. Paper beats rock";
+        console.log("You win. Paper beats rock")
+        return "playerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win. Scissors beats paper";
+        console.log("You win. Scissors beats paper")
+        return "playerWins";
     }
     else if (playerSelection === computerSelection) {
-        return "It's a tie";
+        console.log("It's a tie")
+        return "tieGame";
     }
-    else return "Invalid input";
+    else {
+        console.log("Invalid input")
+        return null;
+    }
 }
 
 function game() {
-    console.log(playRound());
+
+    playerScore = 0;
+    computerScore = 0;
+    tieGames = 0;
+    totalGames = 0;
+
+    while (totalGames < 5) {
+        roundResult = playRound();
+        if (roundResult === "computerWins") {
+            computerScore++;
+        }
+        else if (roundResult === "playerWins") {
+            playerScore++;
+        }
+        else if (roundResult === "tieGame") {
+            tieGames++;
+            totalGames--
+        }
+        else totalGames--;
+        totalGames++;
+    }
+
+    if (computerScore > playerScore) {
+        console.log(`The computer wins ${computerScore}:${playerScore}`)
+    }
+    else console.log(`The player wins ${playerScore}:${computerScore}` )
 }
 
 game();
-
-function getRandomIntInclusive(min, max){
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-}
