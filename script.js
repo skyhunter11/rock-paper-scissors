@@ -9,13 +9,6 @@
 //Make function that called "playRound"
     //playRound takes playerSelection from button clicked by user, and calls getComputerChoice for computerSelection
     //playRound compares playerSelection to computerSelection. It returns a string declaring the winner
-//Write function called "game"
-    //Call "playRound" inside of game to play a 5 round game. After 5 rounds "game" will declares a winner and loser.
-
-
-
-const score = document.querySelector("#score");
-
 
 
 //Assigns random integer from getRandomIntInclusive(min, max) to "Rock", "Paper", or "Scissors"
@@ -57,9 +50,18 @@ buttons.forEach((button) => button.addEventListener("click", () => {
 let playerScore = 0;
 let computerScore = 0;
 
+
+
 function playRound (playerSelection) {
 
     let computerSelection = getComputerChoice();
+
+    if (playerScore >= 5) {
+        winner.textContent = "You win :)"
+    }
+    if (computerScore >= 5) {
+        winner.textContent = "You lose :("
+    }
 
     if (playerSelection === "rock" && computerSelection === "paper") {
         outcome.textContent = "You lose. Rock beats paper";
@@ -111,27 +113,4 @@ function playRound (playerSelection) {
         outcome.textContent = "Invalid input";
         return null;
     }
-
 }
-
-
-//DO NOT NEED ANY OF THIS BECAUSE PLAYROUND IS CALLED BY EVENT LISTENER
-//Calls playRound() until 5 games (not counting ties) have been played. Tracks scores. Reports winner after 5 games
-function game() {
-
-    let playerScore = 0;
-    let computerScore = 0;
-    let tieGames = 0;
-    let totalGames = 0;
-
-
-    if (computerScore > playerScore) {
-        console.log(`The computer wins ${computerScore}:${playerScore}`)
-    }
-    else console.log(`The player wins ${playerScore}:${computerScore}` )
-}
-
-game();
-
-
-
