@@ -52,54 +52,70 @@ buttons.forEach((button) => button.addEventListener("click", () => {
 //playRound calls getComputerChoice to get computerSelection
 //playRound compares playerSelection with computerSelection and returns result
 //Result statement is passed as textContent into the score div
+
+//Initialize scores:
+let playerScore = 0;
+let computerScore = 0;
+
 function playRound (playerSelection) {
 
     let computerSelection = getComputerChoice();
 
-    console.log(playerSelection);
-    console.log(computerSelection);
-
     if (playerSelection === "rock" && computerSelection === "paper") {
-        score.textContent = "You lose. Rock beats paper";
+        outcome.textContent = "You lose. Rock beats paper";
+        computerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
         return "computerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "scissors") {
-        console.log("You lose. Scissors beats rock")
-        score.textContent = "You lose. Scissors beats rock";
+        computerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
+        outcome.textContent = "You lose. Scissors beats rock";
         return "computerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "rock") {
-        console.log("You lose. Rock beats scissors")
-        score.textContent = "You lose. Rock beats scissors";
+        computerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
+        outcome.textContent = "You lose. Rock beats scissors";
         return "computerWins";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        console.log("You win. Rock beats scissors")
-        score.textContent = "You win. Rock beats scissors";
+        playerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
+        outcome.textContent = "You win. Rock beats scissors";
         return "playerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        console.log("You win. Paper beats rock")
-        score.textContent = "You win. Paper beats rock";
+        playerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
+        outcome.textContent = "You win. Paper beats rock";
         return "playerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        console.log("You win. Scissors beats paper")
-        score.textContent = "You win. Scissors beats paper";
+        playerScore += 1;
+        playerS.textContent = playerScore;
+        computerS.textContent = computerScore;
+        outcome.textContent = "You win. Scissors beats paper";
         return "playerWins";
     }
     else if (playerSelection === computerSelection) {
-        console.log("It's a tie")
-        score.textContent = "It's a tie";
+        outcome.textContent = "It's a tie";
         return "tieGame";
     }
     else {
-        console.log("Invalid input")
-        score.textContent = "Invalid input";
+        outcome.textContent = "Invalid input";
         return null;
     }
+
 }
 
+
+//DO NOT NEED ANY OF THIS BECAUSE PLAYROUND IS CALLED BY EVENT LISTENER
 //Calls playRound() until 5 games (not counting ties) have been played. Tracks scores. Reports winner after 5 games
 function game() {
 
