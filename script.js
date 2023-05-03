@@ -3,18 +3,22 @@
 //This game will play against the computer
 
 //Begin with a function called "getComputerChoice"
-//This function will randomly return "Rock", "Paper", or "Scissors"
-    //To return "Rock", "Paper", or "Scissors" randomly, generate a random number between 1 and 3 (or 0 and 2)
-//This function will make the computers move. It ties ties rock,paper,scissors to the random number between 1 and 3
+//This function will randomly return "rock", "paper", or "scissors"
+    //To return "rock", "paper", or "scissors" randomly, generate a random number between 1 and 3 (or 0 and 2)
+//This function will make the computers move. It ties rock,paper,scissors to the random number between 1 and 3
 //Make function that called "playRound"
-    //This function takes the playerSelection and the computerSelection as parameters
-    //This function compares playerSelection to computerSelection. It returns a string declaring the winner
-//Write function called "game".
+    //playRound takes playerSelection from button clicked by user, and calls getComputerChoice for computerSelection
+    //playRound compares playerSelection to computerSelection. It returns a string declaring the winner
+//Write function called "game"
     //Call "playRound" inside of game to play a 5 round game. After 5 rounds "game" will declares a winner and loser.
 
+
+
+const score = document.querySelector("#score");
+
+
+
 //Assigns random integer from getRandomIntInclusive(min, max) to "Rock", "Paper", or "Scissors"
-
-
 function getComputerChoice () {
     switch (getRandomIntInclusive(1,3)) {
         case 1:
@@ -33,7 +37,10 @@ function getRandomIntInclusive(min, max){
 }
 
 //Reads value from clicked button, and assigns that value to playerSelection
-
+//Create nodelist called buttons for all buttons with class="btn"
+//Then loop through nodelist to add "click" event-listenet
+//If clicked, then playerSelection is set to the clicked buttons "value"
+//Then playRound is called with playerSelection passed in as an argument
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => button.addEventListener("click", () => {
     let playerSelection = button.value;
@@ -41,43 +48,54 @@ buttons.forEach((button) => button.addEventListener("click", () => {
 }));
 
 
+//playRound takes playerSelection as an argument
+//playRound calls getComputerChoice to get computerSelection
+//playRound compares playerSelection with computerSelection and returns result
+//Result statement is passed as textContent into the score div
 function playRound (playerSelection) {
 
     let computerSelection = getComputerChoice();
-    
+
     console.log(playerSelection);
     console.log(computerSelection);
 
     if (playerSelection === "rock" && computerSelection === "paper") {
-        console.log("You lose. Rock beats paper")
+        score.textContent = "You lose. Rock beats paper";
         return "computerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "scissors") {
         console.log("You lose. Scissors beats rock")
+        score.textContent = "You lose. Scissors beats rock";
         return "computerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "rock") {
         console.log("You lose. Rock beats scissors")
+        score.textContent = "You lose. Rock beats scissors";
         return "computerWins";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
         console.log("You win. Rock beats scissors")
+        score.textContent = "You win. Rock beats scissors";
         return "playerWins";
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
         console.log("You win. Paper beats rock")
+        score.textContent = "You win. Paper beats rock";
         return "playerWins";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
         console.log("You win. Scissors beats paper")
+        score.textContent = "You win. Scissors beats paper";
         return "playerWins";
     }
     else if (playerSelection === computerSelection) {
         console.log("It's a tie")
+        score.textContent = "It's a tie";
         return "tieGame";
     }
     else {
         console.log("Invalid input")
+        score.textContent = "Invalid input";
         return null;
     }
 }
