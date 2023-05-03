@@ -13,14 +13,16 @@
     //Call "playRound" inside of game to play a 5 round game. After 5 rounds "game" will declares a winner and loser.
 
 //Assigns random integer from getRandomIntInclusive(min, max) to "Rock", "Paper", or "Scissors"
+
+
 function getComputerChoice () {
     switch (getRandomIntInclusive(1,3)) {
         case 1:
-            return "Rock";
+            return "rock";
         case 2:
-            return "Paper";
+            return "paper";
         default:
-            return "Scissors";
+            return "scissors";
     }
 }
 //Returns 1, 2, or 3 randomly
@@ -30,19 +32,21 @@ function getRandomIntInclusive(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
 }
 
-function getPlayerChoice () {
-    return prompt("Enter 'Rock', 'Paper', or 'Scissors'.");
-}
+//Reads value from clicked button, and assigns that value to playerSelection
 
-//Compares computerSelection to playerSelection and returns result
-function playRound () {
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach((button) => button.addEventListener("click", () => {
+    let playerSelection = button.value;
+    playRound(playerSelection);
+}));
 
-    let playerSelection = getPlayerChoice();
+
+function playRound (playerSelection) {
+
     let computerSelection = getComputerChoice();
-
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
-
+    
+    console.log(playerSelection);
+    console.log(computerSelection);
 
     if (playerSelection === "rock" && computerSelection === "paper") {
         console.log("You lose. Rock beats paper")
@@ -86,21 +90,6 @@ function game() {
     let tieGames = 0;
     let totalGames = 0;
 
-    while (totalGames < 5) {
-        roundResult = playRound();
-        if (roundResult === "computerWins") {
-            computerScore++;
-        }
-        else if (roundResult === "playerWins") {
-            playerScore++;
-        }
-        else if (roundResult === "tieGame") {
-            tieGames++;
-            totalGames--
-        }
-        else totalGames--;
-        totalGames++;
-    }
 
     if (computerScore > playerScore) {
         console.log(`The computer wins ${computerScore}:${playerScore}`)
@@ -109,3 +98,6 @@ function game() {
 }
 
 game();
+
+
+
