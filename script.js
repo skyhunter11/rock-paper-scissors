@@ -31,14 +31,11 @@ function getRandomIntInclusive(min, max){
 
 //Reads value from clicked button, and assigns that value to playerSelection
 //Create nodelist called buttons for all buttons with class="btn"
-//Then loop through nodelist to add "click" event-listenet
-//If clicked, then playerSelection is set to the clicked buttons "value"
+//Then loop through nodelist to add "click" event-listener
+//When clicked, playRound function is called
 //Then playRound is called with playerSelection passed in as an argument
 const buttons = document.querySelectorAll(".btn");
-buttons.forEach((button) => button.addEventListener("click", () => {
-    let playerSelection = button.value;
-    playRound(playerSelection);
-}));
+buttons.forEach((button) => button.addEventListener("click", () => playRound()))
 
 
 //playRound takes playerSelection as an argument
@@ -52,9 +49,13 @@ let computerScore = 0;
 
 
 
-function playRound (playerSelection) {
+function playRound () {
 
+    let playerSelection = document.querySelector("button").value;
     let computerSelection = getComputerChoice();
+
+    console.log(playerSelection);
+    //console.log(computerSelection);
 
     if (playerScore >= 5) {
         winner.textContent = "You win :)"
