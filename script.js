@@ -35,7 +35,7 @@ function getRandomIntInclusive(min, max){
 //When clicked, playRound function is called
 //Then playRound is called with playerSelection passed in as an argument
 const buttons = document.querySelectorAll(".btn");
-buttons.forEach((button) => button.addEventListener("click", game))
+buttons.forEach((button) => button.addEventListener("click", playRound))
 
 
 //playRound takes playerSelection as an argument
@@ -56,58 +56,57 @@ function playRound(e) {
 
     console.log(playerSelection);
     console.log(computerSelection);
-    console.log(computerScore);
-    console.log(playerScore);
 
-
-    if (playerSelection === "rock" && computerSelection === "paper") {
-        computerScore += 1;
-        outcome.textContent = "You lose. Rock beats paper";
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        return "computerWins";
-    }
-    else if (playerSelection === "paper" && computerSelection === "scissors") {
-        computerScore += 1;
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        outcome.textContent = "You lose. Scissors beats rock";
-        return "computerWins";
-    }
-    else if (playerSelection === "scissors" && computerSelection === "rock") {
-        computerScore += 1;
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        outcome.textContent = "You lose. Rock beats scissors";
-        return "computerWins";
-    }
-    else if (playerSelection === "rock" && computerSelection === "scissors") {
-        playerScore += 1;
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        outcome.textContent = "You win. Rock beats scissors";
-        return "playerWins";
-    }
-    else if (playerSelection === "paper" && computerSelection === "rock") {
-        playerScore += 1;
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        outcome.textContent = "You win. Paper beats rock";
-        return "playerWins";
-    }
-    else if (playerSelection === "scissors" && computerSelection === "paper") {
-        playerScore += 1;
-        playerS.textContent = playerScore;
-        computerS.textContent = computerScore;
-        outcome.textContent = "You win. Scissors beats paper";
-        return "playerWins";
-    }
-    else if (playerSelection === computerSelection) {
-        outcome.textContent = "It's a tie";
-        return "tieGame";
-    }
-    else {
-        outcome.textContent = "Invalid input";
-        return null;
-    }
+    if (playerScore < 5 && computerScore < 5) {
+        if (playerSelection === "rock" && computerSelection === "paper") {
+            computerScore += 1;
+            outcome.textContent = "You lose. Rock beats paper";
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            return computerScore;
+        }
+        else if (playerSelection === "paper" && computerSelection === "scissors") {
+            computerScore += 1;
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            outcome.textContent = "You lose. Scissors beats rock";
+            return computerScore;
+        }
+        else if (playerSelection === "scissors" && computerSelection === "rock") {
+            computerScore += 1;
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            outcome.textContent = "You lose. Rock beats scissors";
+            return computerScore;
+        }
+        else if (playerSelection === "rock" && computerSelection === "scissors") {
+            playerScore += 1;
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            outcome.textContent = "You win. Rock beats scissors";
+            return playerScore;
+        }
+        else if (playerSelection === "paper" && computerSelection === "rock") {
+            playerScore += 1;
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            outcome.textContent = "You win. Paper beats rock";
+            return playerScore;
+        }
+        else if (playerSelection === "scissors" && computerSelection === "paper") {
+            playerScore += 1;
+            playerS.textContent = playerScore;
+            computerS.textContent = computerScore;
+            outcome.textContent = "You win. Scissors beats paper";
+            return playerScore;
+        }
+        else if (playerSelection === computerSelection) {
+            outcome.textContent = "It's a tie";
+            return "tieGame";
+        }
+        else {
+            outcome.textContent = "Invalid input";
+            return null;
+        }
+    } else outcome.textContent = "Game Over";
 }
