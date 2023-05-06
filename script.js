@@ -6,7 +6,7 @@
 //This function will randomly return "rock", "paper", or "scissors"
     //To return "rock", "paper", or "scissors" randomly, generate a random number between 1 and 3 (or 0 and 2)
 //This function will make the computers move. It ties rock,paper,scissors to the random number between 1 and 3
-//Make function that called "playRound"
+//Make function called "playRound"
     //playRound takes playerSelection from button clicked by user, and calls getComputerChoice for computerSelection
     //playRound compares playerSelection to computerSelection. It returns a string declaring the winner
 
@@ -35,7 +35,7 @@ function getRandomIntInclusive(min, max){
 //When clicked, playRound function is called
 //Then playRound is called with playerSelection passed in as an argument
 const buttons = document.querySelectorAll(".btn");
-buttons.forEach((button) => button.addEventListener("click", () => playRound()))
+buttons.forEach((button) => button.addEventListener("click", game))
 
 
 //playRound takes playerSelection as an argument
@@ -47,26 +47,22 @@ buttons.forEach((button) => button.addEventListener("click", () => playRound()))
 let playerScore = 0;
 let computerScore = 0;
 
+//START HERE - How do I stop function from executing if playerScore, or computerScore equals 5?
 
+function playRound(e) {
 
-function playRound () {
-
-    let playerSelection = document.querySelector("button").value;
+    let playerSelection = e.target.value;
     let computerSelection = getComputerChoice();
 
     console.log(playerSelection);
-    //console.log(computerSelection);
+    console.log(computerSelection);
+    console.log(computerScore);
+    console.log(playerScore);
 
-    if (playerScore >= 5) {
-        winner.textContent = "You win :)"
-    }
-    if (computerScore >= 5) {
-        winner.textContent = "You lose :("
-    }
 
     if (playerSelection === "rock" && computerSelection === "paper") {
-        outcome.textContent = "You lose. Rock beats paper";
         computerScore += 1;
+        outcome.textContent = "You lose. Rock beats paper";
         playerS.textContent = playerScore;
         computerS.textContent = computerScore;
         return "computerWins";
